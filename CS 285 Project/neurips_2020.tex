@@ -1,0 +1,431 @@
+\documentclass{article}
+
+% if you need to pass options to natbib, use, e.g.:
+%     \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2020
+
+% ready for submission
+\usepackage[final]{neurips_2020}
+
+% to compile a preprint version, e.g., for submission to arXiv, add add the
+% [preprint] option:
+%     \usepackage[preprint]{neurips_2020}
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+%     \usepackage[final]{neurips_2020}
+
+% to avoid loading the natbib package, add option nonatbib:
+%\usepackage[nonatbib]{neurips_2020}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{enumitem}
+\usepackage{amsmath, amssymb, amscd, amsthm, bbm, bm}
+\usepackage{graphicx}
+\usepackage{algorithm, algorithmicx, float}
+\usepackage[noend]{algpseudocode}
+\usepackage{dsfont}
+\usepackage{setspace}
+\usepackage{mathtools, nccmath}
+\usepackage{mleftright}
+\usepackage{afterpage}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\usepackage{color}
+\usepackage{algorithm, algorithmicx, float}
+\usepackage[noend]{algpseudocode}
+\usepackage{appendix}
+\usepackage{natbib}
+\bibliographystyle{plainnat}
+\setcitestyle{authoryear,open={(},close={)}}
+\usepackage{subcaption}
+\usepackage{svg}
+\usepackage{float, csquotes}
+
+\newtheoremstyle{defn}% name
+  {\topsep}% space above
+  {\topsep}% space below
+  {}% body font
+  {}% indent amount
+  {\bf}% theorem head font
+  {.}% punctuation after theorem head
+  {.5em}% space after theorem head
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}% theorem head spec
+\theoremstyle{defn}
+\newtheorem{defn}{D\textsc{efinition}}
+
+\newtheoremstyle{prop}% name
+  {\topsep}% space above
+  {\topsep}% space below
+  {}% body font
+  {}% indent amount
+  {\bf}% theorem head font
+  {.}% punctuation after theorem head
+  {.5em}% space after theorem head
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}% theorem head spec
+\theoremstyle{prop}
+\newtheorem{prop}{P\textsc{roposition}}
+
+\newtheoremstyle{assm}% name
+  {\topsep}% space above
+  {\topsep}% space below
+  {}% body font
+  {}% indent amount
+  {\bf}% theorem head font
+  {.}% punctuation after theorem head
+  {.5em}% space after theorem head
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}% theorem head spec
+\theoremstyle{assm}
+\newtheorem{assm}{A\textsc{ssumption}}
+
+\newtheoremstyle{theoremm}% name
+  {\topsep}% space above
+  {\topsep}% space below
+  {}% body font
+  {}% indent amount
+  {\bf}% theorem head font
+  {.}% punctuation after theorem head
+  {.5em}% space after theorem head
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}% theorem head spec
+\theoremstyle{theoremm}
+\newtheorem{theoremm}{T\textsc{heorem}}
+
+\newtheoremstyle{remarkk}% name
+  {\topsep}% space above
+  {\topsep}% space below
+  {}% body font
+  {}% indent amount
+  {\bf}% theorem head font
+  {.}% punctuation after theorem head
+  {.5em}% space after theorem head
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}% theorem head spec
+\theoremstyle{remarkk}
+\newtheorem{remarkk}{R\textsc{emark}}
+
+\newtheoremstyle{lem}% name
+  {\topsep}% space above
+  {\topsep}% space below
+  {}% body font
+  {}% indent amount
+  {\bf}% theorem head font
+  {.}% punctuation after theorem head
+  {.5em}% space after theorem head
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}% theorem head spec
+\theoremstyle{lem}
+\newtheorem{lem}{L\textsc{emma}}
+
+\newtheoremstyle{example}% name
+  {\topsep}% space above
+  {\topsep}% space below
+  {}% body font
+  {}% indent amount
+  {\bf}% theorem head font
+  {.}% punctuation after theorem head
+  {.5em}% space after theorem head
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}% theorem head spec
+\theoremstyle{example}
+\newtheorem{example}{E\textsc{xample}}
+
+\newtheoremstyle{corollary}% name
+  {\topsep}% space above
+  {\topsep}% space below
+  {}% body font
+  {}% indent amount
+  {\bf}% theorem head font
+  {.}% punctuation after theorem head
+  {.5em}% space after theorem head
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}% theorem head spec
+\theoremstyle{example}
+\newtheorem{corollary}{C\textsc{orollary}}
+
+%\hypersetup{draft}
+
+\title{Deep Multi-Agent Reinforcement Learning for Online Order-Dispatching and Repositioning of Heterogeneous Drivers}
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+\author{\rule{0in}{0pt}
+\textbf{Ilgin Dogan}* \hskip 2em \textbf{Yiduo Huang}* \\
+University of California, Berkeley\\
+* All authors contributed equally. } 
+
+\begin{document}
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{-0.7cm}
+\section*{\centering Extended Abstract}
+During the COVID-19 pandemic, the demand for food delivery has surged. Food delivery companies are dealing with millions of orders per hour. They need to assign orders to available drivers efficiently in order to better manage the profits and availability of the drivers. However, these short-term order-dispatching decisions might cause drivers to end up in remote areas (without any nearby orders) after finishing their assigned orders. Thus, the companies need to also solve the problem of repositioning the drivers that will have a crucial long-term impact on the service level for future orders. The order-dispatching and driver-repositioning (a.k.a. fleet management) tasks jointly result in a difficult problem due to dynamic number of active drivers and number of orders in the system. 
+
+We study solving the online order-dispatching and multiple driver-repositioning tasks in a food delivery platform in a reliable and efficient way using a deep multi-agent reinforcement learning (MARL) framework with heterogeneous agents. We refer to our problem as the Online Order-Dispatching and Multi-Driver Repositioning Problem (Online-ODMDRP). The online-ODMDRP includes two different but correlated tasks: order-dispatching and driver-repositioning tasks. The repositioning task has two goals: i) to relocate the idle drivers to help them find new customers if they have no near-by orders or newly enter the system, ii) to dispatch the drivers based on their preferences of exiting the system after completing the existing orders. 
+
+The major contributions of our work to the Online-ODMDRP can be summarized as follows. (1) We introduce a realistic MARL environment that is motivated by the needs of real-world food-delivery platforms. To achieve this, we consider a setting where the drivers are not homogeneous as opposed to the existing approaches in the literature. While solving the order-dispatching task, we consider the personal constraints and preferences of drivers such as the location of their homes and their vehicle types. In addition, we provide a reward structure that is aimed to capture the effect of the long distances travelled by the drivers to pick-up the orders from the restaurants both on the long-term customer satisfaction level and on the returns obtained by drivers. (2) We build an efficient food-delivery simulator and provide empirical analyses based on three Actor-Critic (AC) methods with different neural network architectures on instances of the Online-ODMDRP. These three methods are Distributed AC, Centralized AC, and Shared-Experience AC \citep{christianos2020shared}. 
+
+Our online-ODMDRP framework inherently includes very complex and dynamic interactions between multiple agents. Hence, it is important for the agents to be able to implicitly coordinate with each other while interacting with the environment synchronously in order to maximize their returns. However, the distributed and centralized executions of this framework take away any opportunity for the agents to effectively coordinate with each other. As a result, we observe that SEAC outperforms the other approaches. However, we find that the highly dynamic and stochastic nature of our environment and the complex interactions between the drivers result in high fluctuations in the performance of the AC-based methods. We discuss some potential causes for this instability and aim to perform further analyses to stabilize our framework as a future work.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\section{Introduction}
+During the COVID-19 pandemic, the demand for food delivery has surged. Food delivery companies are dealing with millions of orders per hour. They need to assign orders to available drivers efficiently in order to better manage the profits and availability of the drivers. However, these short-term order-dispatching decisions might cause drivers to end up in remote areas (without any nearby orders) after finishing their assigned orders. Thus, the companies need to also solve the problem of repositioning the drivers that will have a crucial long-term impact on the service level for future orders. The order-dispatching and driver-repositioning (a.k.a. fleet management) tasks jointly result in a difficult problem due to dynamic number of active drivers and number of orders in the system. 
+
+We study solving the online order-dispatching and multiple driver-repositioning tasks in a food delivery platform in a reliable and efficient way using a deep multi-agent reinforcement learning (MARL) framework with heterogeneous agents. We refer to our problem as the Online Order-Dispatching and Multi-Driver Repositioning Problem (Online-ODMDRP). The online-ODMDRP includes two different but correlated tasks: order-dispatching and driver-repositioning tasks. The repositioning task has two goals: i) to relocate the idle drivers to help them find new customers if they have no near-by orders or newly enter the system, ii) to dispatch the drivers based on their preferences of exiting the system after completing the existing orders. The repositioning task is solved based on the structure of the city plan and the distribution of the existing orders in the buffer. 
+
+The major contributions of our work to the Online-ODMDRP can be summarized as follows. 
+\begin{enumerate}[leftmargin=*]
+    \item We introduce a realistic MARL environment that is motivated by the needs of real-world food-delivery platforms. 
+    \begin{enumerate}
+    \item[1a)] We consider the effect of travel distance on the long-term demand. The distances travelled by drivers have significant effects on both drivers and customers. Since drivers are not getting paid during the time of travelling to a pick-up location, we suggest that minimizing the duration of these travels will contribute to the revenues earned by each driver. In addition, minimizing the waiting time of customers will improve the order response (estimated delivery) time and customer experience in the long-term. We incorporate this effect into our reward structure by assuming that the following costs are incurred to a driver: i) a one-step travel cost based on driver's most recent movement, ii) a food on-board cost proportional to travel time of an order (from its pick-up to delivery). We also assume that if an order cannot be delivered within a specified time window, then it is lost from the system as a penalty.
+    \item[1b)] We consider a realistic problem setting with heterogeneous drivers in contrast to the existing approaches that identify all drivers as homogeneous agents. We add additional individual-specific features to characterize each driver: i) information about the vehicle of a driver including its speed and available carrying capacity, ii) location of the house/original location that a driver will return to exit the system.
+\end{enumerate}
+    \item We build an efficient food-delivery simulator and provide empirical analyses based on Actor-Critic (AC) methods with different neural network structures on instances of the Online-ODMDRP. 
+\end{enumerate}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Related Work}\label{literature}
+The online-ODMDRP constitues a difficult MARL problem due to the non-stationarity caused by concurrently learning agents and the dynamic structure of the state space and population size. Existing studies often provide heuristic solutions to solve this problem. A growing number of studies in the literature develop RL algorithms to solve the order-dispatching task \citep[see for example,][]{Li2019, tang2019deep, ke2019optimizing, Zhou2019, yang2020multiagent} and driver-repositioning task \citep[see for example,][]{gao2018optimize, lin2018efficient, yang2018mean, wen2017rebalancing}. 
+
+As a single-agent RL framework, \cite{wang2018deep} use deep Q-learning with knowledge transfer for learning order dispatching strategies form the perspective of a single driver in a ride-sharing platform. Similarly, \cite{xu2018large} formulate the order-dispatching task as a single-agent setting by training a centralized/shared neural network architecture. However, centralized execution of the online order-dispatching and driver-repositioning tasks are ineffective to capture the stochastic demand-supply dynamics and complex interactions between a large number of concurrently learning agents. 
+
+\cite{tan1993multi} provides an analysis and comparison between independent Q-learning and a cooperative counterpart in different settings, and provided an empirically proof of the learning efficiency of the cooperative Q-learning. More recently, \cite{Li2019} solve the order-dispatching task by proposing \enquote{independent} and \enquote{cooperative} AC methods in which they use a mean-field approximation for the drivers in the same neighborhood. A distributed deep Q-network (DQN)-based framework (in which each driver is trained independently) is proposed for the driver-repositioning task by \cite{oda2018movi} and for the order-dispatching task by \cite{al2019deeppool}.
+
+While distributed execution of the online order-dispatching and driver-repositioning tasks are more efficient and easy in implementation, they completely ignore the complex interactions and competition between multiple agents resulting in sub-optimal solutions. Therefore, we refer to a recently proposed MARL algorithm, called the Shared-Experience Actor-Critic (SEAC) that is empirically shown to outperform both the distributed and centralized approaches in several multi-agent environments \citep{christianos2020shared}. We adopt SEAC into our realistic food-delivery environment and conduct an empirical analyses using our efficient food-delivery simulator. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{MARL Environment}\label{env}
+The online-ODMDRP can be formulated as a Partially-Observable Markov Decision Process (POMDP) characterized by the tuple $\left(\mathcal{S}, \mathcal{O}, \mathcal{A}, \mathcal{T}, \mathcal{R}, N \right)$ whose components are described below in detail. The goal of the online-ODMDRP is to maximize the cumulative reward obtained from the MARL environment at the end of a finite time horizon. We assume that the environment provides reward only for the order-dispatching actions. To clarify, we consider a 2-dimensional city environment with many restaurants and drivers. Each driver is considered as an agent in the MARL framework. 
+
+\begin{itemize}[leftmargin=*]
+    \item $N$: Number of active heterogeneous drivers/agents in the current system. Since activeness of drivers occurs via a random process, we assume that $N$ is a dynamic input.
+    \item $S$: Environment state space that is not fully observable to the agents. We denote the system state at time $t$ as $s_t \in \mathcal{S}$ and it consists of $s_t = (d^1_t, 
+    \ldots, d^N_t, C_t, s_t^{\text{city}})$ where $d^i_t$ is the state (i.e. feature) vector for agent $i$ at time $t$, $C_t$ is the current buffer of unassigned customer orders at time $t$, and $s_t^{\text{city}}$ is the current state of the city (i.e. traffic density) at time $t$ which is assumed to evolve independent from the current states of the agents. 
+    \begin{itemize} 
+        \item Each customer order $k$, $c^k \in C_t$, is defined by the tuple $c^k = (x^k_{pick}, x^k_{drop}, \rho^k, pt^k)$ where 
+        \begin{itemize}
+            \item $x^k_{pick}$ is the pick-up location (i.e. restaurant) of order $k$
+            \item $x^k_{drop}$ is the drop-off location (i.e. customer's location) of order $k$
+            \item $\rho^k$ is the fee that a driver earns from order $k$
+            \item $w^k$ is the latest possible pick-up time window for order $k$. We assume that if the realized pick-up time of an order is not within $w^k$, then this order is lost and removed from the system. 
+        \end{itemize}
+        \item Each agent $i$ is characterized by the tuple $d^i_t = (x_t^i, v^i, c_t^{i,\text{pend}},c_t^{i,\text{cand}_1}, \ldots, c_t^{i,\text{cand}_M}, h^i)$ where 
+        \begin{itemize}
+            \item $x_t^i$ is the current location of agent $i$ at time $t$ that is specified by a 2-dimensional tuple
+            \item $v_t^i$ is the vehicle information (speed and available capacity) of agent $i$ at time $t$
+            \item $c_t^{i,\text{pend}} \in U_t^i \in C_t$ is the pending order (order to be picked) for agent $i$ at time $t$ where $U_t^i$ is the set of orders on board that has been already picked up by agent $i$ at time $t$
+            \item $\{c_t^{i,\text{cand}_1}, \ldots c_t^{i,\text{cand}_M}\} \subset C_t$ is the set of candidate orders that we consider as to be the next potential pending order at the next time step
+            \item $\kappa_t^i := \{[x(u_{t,j}^i), y(u_{t,j}^i)], j=1, \ldots ,|U_t^i|\}$ is the optimal path to fulfill the current orders on board where $[x(u_{t,j}^i), y(u_{t,j}^i)]$ is the drop-off location of order $u_{t,j}^i$. To make sure that the length of input is fixed, we pad this vector with the last drop-off location and time on the current trajectory so that the length of $\kappa_t^i$ is equal to the maximum vehicle capacity of agent $i$.
+        \item $h^i$ is the location of the house/original destination of agent $i$. We assume that the agent can only accept the orders whose pick-up/drop-off locations are within a certain radius of $h^i$.
+        \end{itemize}
+        \item $s_t^{city}$ is the feature of the city. We approximate it based on the historical average demand distribution over the city.
+    \end{itemize}
+    \item $\mathcal{O} = O^1 \times O^2 \times \ldots \times O^N$: Joint observation space where $O^i$ is the private observation available to agent $i$. We assume that an agent is not able to observe the state of the other agents. Thus, we define the observation of agent $i$ at time $t$ as $o_t^i = (d^i_t, s_t^{\text{city}}) \in O^i$.
+    \item $\mathcal{A} = A^1 \times A^2 \times \ldots \times A^N$: Joint action space for $N$ agents. An action $a^i_t \in A^i=\{0, 1, \ldots, M\}$ is defined as 
+    \begin{itemize}
+        \item $a^i_t = k \geq 1$ if agent $i$ decides either to have a new pending order chosen from its candidate orders (order dispatching task) or to dispatch to a new area (repositioning task)
+        \item $a^i_t = 0$ if agent $i$ keeps following its current trajectory.
+    \end{itemize}
+    \item $\mathcal{T}$: State transition dynamics. At each time point, after assigning the orders to agents and updating the paths of drivers, we update the system state components for agent $i$ according to Algorithm 1. The city features are updated according to an independent random process.
+    \item $\mathcal{R} = R^1 \times R^2 \times \ldots \times R^N$: Joint reward space for $N$ agents. We assume that an agent obtains the reward associated with an order at the time step when the order is delivered. In addition, a one-step travel cost is incurred to an agent at each time step. Our reward structure is mainly inspired from \cite{DeepPool}. We compute the reward associated with order $k$, $c^k \in U^i_t$, that agent $i$ earns at time $t$ based on the delivery of this order as follows:
+    \begin{equation}
+         r^i_t(d_t^i, a^i_t) = \beta_1 \rho^k -\beta_2 |U^i_t| - \beta_3 J^i
+    \end{equation} 
+    where $J^i$ is the one-step travelling cost, i.e., unit amount of oil consumed at a single time step by agent $i$.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Actor-Critic Frameworks}\label{ac}
+\subsection{Baselines and Neural Network Architectures}\label{base}
+
+\textbf{Distributed/Independent Actor-Critic (DAC):} This approach assumes independent learning for each agent, i.e. a separete policy network is trained for each agent using only its own experience. DAC implements an independent AC algorithm for each agent by directly optimizing the following policy loss (\ref{pol_loss}) and value loss (\ref{critic_loss}) for agent $i$:
+
+\begin{align}
+    \mathcal{L}(\theta^i) &= \log {\pi_{\theta^i}} (a_t^i | o_t^i)(r^i_t(d_t^i, a_t^i) + \gamma V^{\pi}_{\theta^i}(o_{t+1}^i) - V^{\pi}_{\theta^i}(o_{t}^i)) \label{pol_loss} \\
+    \mathcal{L}(\phi^i) &= \dfrac{1}{2} \left| \left|V^\pi_{\phi^i} (o_t^i) - y^i_t \right|\right| \text{ where } y^i_t = r^i_t(d_t^i, a_t^i) + \gamma V^{\pi}_{\theta^i}(o_{t+1}^i) \label{critic_loss}
+\end{align}
+
+where the policy learned by agent $i$ is parametrized by $\theta^i$ and the value function $V^{\pi}_{\theta^i}(o_{t}^i)$ of agent $i$ is parametrized by $\phi^i$. 
+
+In our implementation, we train $N$ actor and $N$ critic networks. The input of the actor network for agent $i$ is $(o_t^i,a_t^i)$ and the output is a scalar. We feed the output of the actor network into a Boltzmann softmax selector
+\begin{equation}
+\pi(c_t^{i,cand_k},|o^t_i)= \frac{\exp(\mu_i(o^t_i,c_t^{i,cand_k}))}{\sum\limits_{m=1}^{M} \exp(\mu_k(o^t_i,c_t^{i,cand_m}))}, \ \forall k \in \{1, \ldots, M\}
+\end{equation} to decide the next pending order for agent $i$ among the candidate orders $c_t^{i,cand_m}, \ m \in \{1, \ldots, M\}$. 
+
+\textbf{Centralized/Shared-Network Actor-Critic (CAC):} This approach implements a single actor-critic algorithm and trains a single shared policy network using the on-policy data of all agents. Each agent executes a copy of the shared policy and the sum of policy. Then, the total policy and value loss gradients are used to optimize the parameters. 
+
+In our implementation, the input size of the shared network is  $N *\text{dim}(d^i_t)$ (note that the dimension of the state tuple is same for each agent $i \in \{1, \ldots, N\}$) and the output size is $N*M$ where $M$ is the number of candidate orders given in the state tuple of an agent. The output of the shared network is the logits for the categorical distribution. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Shared-Experience Actor-Critic (SEAC)}\label{seac}
+As mentioned in Section \ref{literature}, we adopt SEAC \citep[see][]{christianos2020shared} algorithm into our food-delivery MARL environment. SEAC operates similarly to DAC but updates the actor and critic parameters of an agent by combining gradients computed on the agent’s experience with weighted gradients computed on other agents’ experience. While training an agent, SEAC uses on-policy trajectory generated by that agent and off-policy trajectory generated by the other agents by implementing importance sampling. 
+
+More specifically, SEAC optimizes the following policy loss (\ref{pol_loss_2}) and value loss (\ref{critic_loss_2}) for agent $i$:
+
+\begin{align}
+    \mathcal{L}(\theta^i) &= \log {\pi_{\theta^i}} (a_t^i | o_t^i)(r^i_t(d_t^i, a_t^i) + \gamma V^{\pi}_{\theta^i}(o_{t+1}^i) - V^{\pi}_{\theta^i}(o_{t}^i)) \nonumber \\
+    & \ \ \ \ \ \ + \lambda \sum\limits_{k \neq i} \dfrac{\pi_{\theta^i} (a_t^k | o_t^k)}{\pi_{\theta^k} (a_t^k | o_t^k)} \log {\pi_{\theta^i}} (a_t^k | o_t^k)(r^k_t(d_t^k, a_t^k) + \gamma V^{\pi}_{\theta^i}(o_{t+1}^k) - V^{\pi}_{\theta^i}(o_{t}^k)) \label{pol_loss_2} \\
+    \mathcal{L}(\phi^i) &= \dfrac{1}{2} \left| \left|V^\pi_{\phi^i} (o_t^i) - y^{i, i}_t \right|\right| + \dfrac{\lambda}{2} \sum\limits_{k \neq i} \dfrac{\pi_{\theta^i} (a_t^k | o_t^k)}{\pi_{\theta^k} (a_t^k | o_t^k)} \left| \left|V^\pi_{\phi^i} (o_t^k) - y^{i, k}_t \right|\right| \nonumber \\
+    & \text{ where } y^{i,k}_t = r^k_t(d_t^k, a_t^k) + \gamma V^{\pi}_{\theta^i}(o_{t+1}^k) \label{critic_loss_2}
+\end{align}
+
+where the hyperparameter $\lambda$ is weighs the effect of experience of other agents. \cite{christianos2020shared} reports that the performance of SEAC is robust with respect ot the values of $\lambda$. We use $\lambda = 1$ in our experiments as suggested by \cite{christianos2020shared}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Efficient Simulator Design for Online-ODMDRP}
+We develop an efficient simulator based on the realistic MARL environment that we introduced in Section \ref{env} for the online order-dispatching and driver-repositioning tasks in a food-delivery system. We provide a pseudocode for our simulator in Algorithm \ref{alg:sim}. We implement all AC methods described in Section \ref{ac} using this simulator.  
+
+In Algorithm \ref{alg:sim}, we first set the maximum number of candidate orders for each driver and initialize the state and number of active agents in the sytem (lines 1 and 2). At each time step $t \in \mathcal{T}$, we first collect the new customer orders (line 3) and then each agent $i$ determines its action $a_i^t$, updates its estimated trajectory and observe the reward associated with $a_i^t$ (lines 5 - 15). 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\algnewcommand\algorithmicforeach{\textbf{foreach}}
+\algnewcommand\FOReach{\item[\algorithmicforeach]}
+\algdef{S}[FOR]{ForEach}[1]{\algorithmicforeach\ #1\ \algorithmicdo}
+\algnewcommand{\IfThenElse}[3]{\State \algorithmicif\ #1\ \algorithmicthen\ #2\ \algorithmicelse\ #3}
+
+\begin{algorithm*}
+\caption{Online-ODMDRP Simulator}
+\label{alg:sim} 
+\begin{algorithmic}[1]
+\State Set: $M$, $N$
+\State Initialize: States of the drivers
+\For{$t \in \mathcal{T}$} 
+\State Get all customer orders at time $t$
+\For{each driver $i \in \{1, \ldots, N\}$}
+\State Check if driver $i$ can pick-up its pending order or drop-off any orders on board
+\If {can pick-up or drop-off orders} {update $U_t^i$}
+\EndIf
+\State Assign the closest $M$ orders as the candidate orders for driver $i$:  $c_t^{i,\text{cand}_1}, \ldots, c_t^{i,\text{cand}_M}$
+\State Get the action $a_t^i$ to decide if driver $i$ will accept a new order ($a_t^i \geq 1$) or not ($a_t^i=0$)
+\If {$a_t^i = k \geq 1$}
+\State Update the current pending order $c_t^{i,\text{pend}} = c_t^{i,\text{cand}_k}$
+\State Update the trajectory of driver $i$ by solving a TSP. 
+\State Compute the reward associated with accepting the new order $c_t^{i,\text{cand}_k}$
+\Else {} 
+\State Compute the reward associated with the current trajectory
+\EndIf
+\State Update the environment according to the updated the trajectory
+\EndFor
+\EndFor
+\end{algorithmic}
+\end{algorithm*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Numerical Experiments}\label{exp}
+In our numerical experiments, we work with synthetic data. We consider a $10 \times 10$ grid-based city using the Manhattan distance metric. There are $15$ restaurants located mostly in the corner locations of the city. We generate orders for restaurants according to a Poisson process. For each active restaurant, we generate the destination of the orders with a Uniform distribution over the city plane. Given the orders on board (that has been already picked-up), we find the optimal path of a driver by solving a Traveling Salesman Problem (TSP) using the Bellman–Held–Karp (BHK) algorithm. We use Python3 and PyTorch to implement our Online-ODMDRP framework.
+
+We perform tuning for the following hyperparameters of our MARL environment: 
+\begin{itemize}
+    \item The maximum number of candidate orders for an agent ($M$)
+    \item The maximum available vehicle capacity of each agent
+    \item The radius around the original destination of an agent (so that it can accept only the orders whose pick-up/drop-off locations are within that radius)
+    \item Maximum number of orders kept in the system buffer
+\end{itemize} 
+We test all the algorithms both in single-agent ($N =1$) and multi-agent ($N=3$) environments. We report the learning curves of all experiments in Figures 1-4.
+
+\subsection{Results \& Analysis}\label{analysis}
+We observe similar patterns for different algorithms across experiments. We can see that DAC is the least sample-efficient approach with respect to CAC and SEAC. Given that DAC requires more samples to converge, as DAC trains each agents independently using only their own experiences, it performs worse than the other approaches. Furthermore, CAC also performs worse than SNAC as expected. Our online-ODMDRP framework inherently includes very complex and dynamic interactions between multiple agents. Hence, it is important for the agents to be able to implicitly coordinate with each other while interacting with the environment synchronously in order to maximize their returns. However, the centralized execution of this framework takes away any opportunity for the agents to effectively coordinate with each other.
+
+Although the resulting learning curves are quite fluctuating, SEAC yields the best learning process with higher returns. This was an expected result as SEAC considers combining the local gradients to improve the ability of the agents to learn how to coordinate in such a highly stochastic system. 
+
+However, we do not obtain the results that we were expecting in the beginning. Hence, we would like to note here some potential causes for our current results. Firstly, we observe that our environment is highly dynamic and the process of order generating is highly stochastic. Secondly, we have a very high-dimensional state space which causes the critic network to take a long time to find a good approximation of the value function for an agent. As a result of a poorly approximated value function, the actor network also generates policies with poor performance. Lastly, we believe that we could not conduct hyperparameter tuning sufficiently due to high computational requirements in terms of environment steps. We believe that the performance of the algorithms might improve and stabilize more after conducting a more adequate hyperparameter tuning.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusion}\label{conc}
+In this work, we propose a realistic MARL environment for the online order-dispatching and fleet management problems in a food-delivery system. We consider a setting where the drivers are not homogeneous as opposed to the existing approaches in the literature. While solving the order-dispatching task, we consider the personal constraints of drivers such as the location of their homes. We also provide a reward structure to capture the effect of the long distances travelled by the drivers to pick-up the orders from the restaurants both on the long-term customer satisfaction level and on the returns obtained by drivers. Lastly, we build an efficient food-delivery simulator based on our MARL environment and conduct experiments using three different AC algorithms. We find that the highly dynamic and stochastic nature of our environment and the complex interactions between the drivers result in high fluctuations in the performance of the AC-based methods. We discuss some potential causes for this result and aim to perform further analyses to stabilize our framework as a future work.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\captionsetup[figure]{belowskip=-4pt}
+\begin{figure}
+  \centering
+  \captionsetup[subfigure]{aboveskip=-5pt,belowskip=-2pt}
+  \begin{subfigure}[b]{0.49\textwidth}
+  \centering
+  \includesvg[width=\textwidth]{DAC_1driver_cap1.svg}
+  \caption*{}
+  \label{fig:TvsTstep}
+  \end{subfigure}
+	\ 
+  \begin{subfigure}[b]{0.49\textwidth}
+  \centering
+  \includesvg[width=\textwidth]{DAC_1driver_cap1.svg}
+  \caption*{}
+  \label{fig:TvsNstep}
+  \end{subfigure}
+  \caption{Comparison of DAC and SEAC for single-agent environment with vehicle capacity = 1.}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\captionsetup[figure]{belowskip=-4pt}
+\begin{figure}
+  \centering
+  \captionsetup[subfigure]{aboveskip=-5pt,belowskip=-2pt}
+  \begin{subfigure}[b]{0.49\textwidth}
+  \centering
+  \includesvg[width=\textwidth]{DAC_1driver_cap1.svg}
+  \caption*{}
+  \label{fig:TvsTstep}
+  \end{subfigure}
+	\ 
+  \begin{subfigure}[b]{0.49\textwidth}
+  \centering
+  \includesvg[width=\textwidth]{DAC_1driver_cap1.svg}
+  \caption*{}
+  \label{fig:TvsNstep}
+  \end{subfigure}
+  \caption{Comparison of DAC and SEAC for single-agent environment with vehicle capacity = 3.}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\captionsetup[figure]{belowskip=-4pt}
+\begin{figure}
+  \centering
+  \captionsetup[subfigure]{aboveskip=-5pt,belowskip=-2pt}
+  \begin{subfigure}[b]{0.49\textwidth}
+  \centering
+  \includesvg[width=\textwidth]{DAC_1driver_cap1.svg}
+  \caption*{}
+  \label{fig:TvsTstep}
+  \end{subfigure}
+	\ 
+  \begin{subfigure}[b]{0.49\textwidth}
+  \centering
+  \includesvg[width=\textwidth]{DAC_1driver_cap1.svg}
+  \caption*{}
+  \label{fig:TvsNstep}
+  \end{subfigure}
+  \caption{Comparison of DAC and SEAC for multi-agent environment with vehicle capacity = 1.}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\captionsetup[figure]{belowskip=-4pt}
+\begin{figure}
+  \centering
+  \captionsetup[subfigure]{aboveskip=-5pt,belowskip=-2pt}
+  \begin{subfigure}[b]{0.49\textwidth}
+  \centering
+  \includesvg[width=\textwidth]{DAC_1driver_cap1.svg}
+  \caption*{}
+  \label{fig:TvsTstep}
+  \end{subfigure}
+	\ 
+  \begin{subfigure}[b]{0.49\textwidth}
+  \centering
+  \includesvg[width=\textwidth]{DAC_1driver_cap1.svg}
+  \caption*{}
+  \label{fig:TvsNstep}
+  \end{subfigure}
+  \caption{Comparison of DAC and SEAC for multi-agent environment with vehicle capacity = 3.}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\renewcommand{\bibfont}{\small}
+%\printbibliography
+%\nocite{*}
+\clearpage
+\bibliography{Project}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
