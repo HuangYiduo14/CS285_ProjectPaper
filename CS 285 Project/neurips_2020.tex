@@ -237,7 +237,7 @@ The online-ODMDRP can be formulated as a Partially-Observable Markov Decision Pr
         \item $a^i_t = 0$ if agent $i$ keeps following its current trajectory.
     \end{itemize}
     \item $\mathcal{T}$: State transition dynamics. At each time point, after assigning the orders to agents and updating the paths of drivers, we update the system state components for agent $i$ according to Algorithm 1. The city features are updated according to an independent random process.
-    \item $\mathcal{R} = R^1 \times R^2 \times \ldots \times R^N$: Joint reward space for $N$ agents. We assume that an agent obtains the reward associated with an order at the time step when the order is delivered. In addition, a one-step travel cost is incurred to an agent at each time step. Our reward structure is mainly inspired from \cite{DeepPool}. We compute the reward associated with order $k$, $c^k \in U^i_t$, that agent $i$ earns at time $t$ based on the delivery of this order as follows:
+    \item $\mathcal{R} = R^1 \times R^2 \times \ldots \times R^N$: Joint reward space for $N$ agents. We assume that an agent obtains the reward associated with an order at the time step when the order is delivered. In addition, a one-step travel cost is incurred to an agent at each time step. Our reward structure is mainly inspired from \cite{al2019deeppool}. We compute the reward associated with order $k$, $c^k \in U^i_t$, that agent $i$ earns at time $t$ based on the delivery of this order as follows:
     \begin{equation}
          r^i_t(d_t^i, a^i_t) = \beta_1 \rho^k -\beta_2 |U^i_t| - \beta_3 J^i
     \end{equation} 
@@ -262,7 +262,7 @@ In our implementation, we train $N$ actor and $N$ critic networks. The input of 
 \pi(c_t^{i,cand_k},|o^t_i)= \frac{\exp(\mu_i(o^t_i,c_t^{i,cand_k}))}{\sum\limits_{m=1}^{M} \exp(\mu_k(o^t_i,c_t^{i,cand_m}))}, \ \forall k \in \{1, \ldots, M\}
 \end{equation} to decide the next pending order for agent $i$ among the candidate orders $c_t^{i,cand_m}, \ m \in \{1, \ldots, M\}$. 
 
-\textbf{Centralized/Shared-Network Actor-Critic (CAC):} This approach implements a single actor-critic algorithm and trains a single shared policy network using the on-policy data of all agents. Each agent executes a copy of the shared policy and the sum of policy. Then, the total policy and value loss gradients are used to optimize the parameters. 
+\textbf{Centralized/Shared-Network Actor-Critic (CAC):} This approach implements a single actor-critic algorithm and trains a single shared policy network using the on-policy data of all agents. The environment takes the concatenation of all drivers' observations as its input, and gives policies to all the drivers.
 
 In our implementation, the input size of the shared network is  $N *\text{dim}(d^i_t)$ (note that the dimension of the state tuple is same for each agent $i \in \{1, \ldots, N\}$) and the output size is $N*M$ where $M$ is the number of candidate orders given in the state tuple of an agent. The output of the shared network is the logits for the categorical distribution. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
